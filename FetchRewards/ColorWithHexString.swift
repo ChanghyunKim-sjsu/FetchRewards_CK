@@ -2,14 +2,19 @@
 //  ColorWithHexString.swift
 //  FetchRewards
 //
-//  Created by 김창현 on 4/22/21.
+//  Created by Changhyun Kim on 4/22/21.
 //
 
 import Foundation
 import UIKit
 
 class ColorWithHexString {
-    func hexStringToUIColor (hex:String) -> UIColor {
+    /**
+     Get the hex string and returns UIColor with the hex string applied.
+     - Parameter hex: The hex string of the specific color.
+     Return: UIColor with the hex string applied.
+     */
+    func hexStringToUIColor (hex: String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: (.whitespacesAndNewlines) as CharacterSet).uppercased()
         
         if (cString.hasPrefix("#")) {

@@ -2,7 +2,7 @@
 //  EventTableViewCell.swift
 //  FetchRewards
 //
-//  Created by 김창현 on 4/22/21.
+//  Created by Changhyun Kim on 4/22/21.
 //
 
 import UIKit
@@ -20,10 +20,12 @@ class EventTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+
     func setLayout() {
         self.eventImageView.layer.cornerRadius = self.eventImageView.frame.width / 8
         self.eventImageView.clipsToBounds = true
         
+        // Save and load favorite events.
         if let data = UserDefaults.standard.value(forKey: "\(self.eventNameLabel.text!)") as? Data {
             let event = try? PropertyListDecoder().decode(saveFavoriteEvent.self, from: data)
             if (event!.fav) { self.favImageView.isHidden = false}

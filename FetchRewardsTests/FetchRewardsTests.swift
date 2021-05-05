@@ -2,7 +2,7 @@
 //  FetchRewardsTests.swift
 //  FetchRewardsTests
 //
-//  Created by 김창현 on 4/21/21.
+//  Created by Changhyun Kim on 4/21/21.
 //
 
 import XCTest

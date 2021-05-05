@@ -2,7 +2,7 @@
 //  MainViewController.swift
 //  FetchRewards
 //
-//  Created by 김창현 on 4/22/21.
+//  Created by Changhyun Kim on 4/22/21.
 //
 
 import UIKit
@@ -10,11 +10,11 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     weak var eventDetailVC: EventDetailViewController?
-    var session : URLSession!
+//    var session : URLSession!
     let colorHex = ColorWithHexString()
-    let now = NSDate()
     let formatter = DateFormatter()
     
+    // Array variable for each events
     lazy var eventList: [EventVO] = {
         var list = [EventVO]()
         return list
@@ -33,25 +33,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.searchBar.delegate = self
         
+        // Setup the background color with hex string
         self.topView.backgroundColor = colorHex.hexStringToUIColor(hex: "253544")
         UISearchBar.appearance().setImage(UIImage(named: "icon_search_white.png"), for: .search, state: .normal)
         
         self.setData(searching: "?")
     }
     
-    // SearchBar
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.searchBar.endEditing(true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // White Space will be replaced with +
         let newEvent = searchBar.text!.replacingOccurrences(of: " ", with: "+")
+        
+        // Clear all data before the new data
         self.eventList.removeAll()
+        
         self.setData(searching: "?q=\(newEvent)&")
         self.conTableView.reloadData()
     }
     
-    // Table View Delgates and DataSources
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,6 +76,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         cell.contentView.isUserInteractionEnabled = false
         
+        // Get and fetch data to the each UITableViewCell
         cell.eventNameLabel.text = row.title
         cell.dateLabel.text = row.date
         cell.locationLabel.text = row.location
@@ -81,51 +85,51 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    // The Ten Band
     func setData(searching: String = "") {
         let url = "https://api.seatgeek.com/2/events" + searching + "client_id=" + clientId
-        print("url: \(url)")
         let apiURL: URL! = URL(string: url)
         let apidata = try! Data(contentsOf: apiURL)
+        
+        // Get the data with the api and store the data in each eventList object
+        do {
+            let apiDictionary = try JSONSerialization.jsonObject(with: apidata, options: []) as! NSDictionary
+            let entireEvent = apiDictionary["events"] as! NSArray
+            
+            for row in entireEvent {
+                let evo = EventVO()
+                let r = row as! NSDictionary
 
-        _ = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue)
-                do {
-                    let apiDictionary = try JSONSerialization.jsonObject(with: apidata, options: []) as! NSDictionary
-                    let entireEvent = apiDictionary["events"] as! NSArray
-                    
-                    for row in entireEvent {
-                        let evo = EventVO()
-                        let r = row as! NSDictionary
-
-                        if let date = r["datetime_local"] as? String {
-                            evo.date = dateReformat(reDate: date)
-                        }
-                        
-                        let pAry = r["performers"] as! [[String:Any]]
-                        let performers = pAry[0] as NSDictionary
-                        
-                        if let image = performers["image"] as? String {
-                            evo.thumbnail = image
-                        }
-                        
-                        if let title = performers["name"] as? String {
-                            evo.title = title
-                        }
-                        
-                        let vAry = r["venue"] as! NSDictionary
-                        if let location = vAry["display_location"] as? String {
-                            evo.location = location
-                        }
-                        
-                        self.eventList.append(evo)
-                    }
-                    
+                if let date = r["datetime_local"] as? String {
+                    evo.date = dateReformat(reDate: date)
                 }
-                catch {
-                    NSLog("Parse Error!!")
+                
+                let pAry = r["performers"] as! [[String:Any]]
+                let performers = pAry[0] as NSDictionary
+                
+                if let image = performers["image"] as? String {
+                    evo.thumbnail = image
                 }
+                
+                if let title = performers["name"] as? String {
+                    evo.title = title
+                }
+                
+                let vAry = r["venue"] as! NSDictionary
+                if let location = vAry["display_location"] as? String {
+                    evo.location = location
+                }
+                
+                self.eventList.append(evo)
+            }
+            
+        }
+        catch {
+            NSLog("Parse Error!!")
+        }
+                
     }
     
+    // Reforming date format
     func dateReformat(reDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -153,6 +157,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
         
+    // Going back to the Main View Controller Scene
     @IBAction func unwindToMain( _ seg: UIStoryboardSegue) {
         self.conTableView.reloadData()
     }

@@ -1,5 +1,4 @@
 [![Swift Version][swift-image]][swift-url]
-
 # Fetch Rewards
 
 This project is FetchRewards Coding Exercise. You can find upcoming events in this application and mark the favorite events.

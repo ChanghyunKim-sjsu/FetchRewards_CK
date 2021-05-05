@@ -8,7 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
+    private let viewModel = SeatGeekViewModel()
+    
     weak var eventDetailVC: EventDetailViewController?
     var session : URLSession!
     let colorHex = ColorWithHexString()
@@ -30,13 +31,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.conTableView.delegate = self
         self.conTableView.dataSource = self
-        
         self.searchBar.delegate = self
         
         self.topView.backgroundColor = colorHex.hexStringToUIColor(hex: "253544")
         UISearchBar.appearance().setImage(UIImage(named: "icon_search_white.png"), for: .search, state: .normal)
-        
-        self.setData(searching: "?")
+            
+        viewModel.eventData.bind { dataList in
+            self.eventList = dataList
+            self.conTableView.reloadData()
+        }
     }
     
     // SearchBar
@@ -47,7 +50,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let newEvent = searchBar.text!.replacingOccurrences(of: " ", with: "+")
         self.eventList.removeAll()
-        self.setData(searching: "?q=\(newEvent)&")
+        
+        viewModel.changeSearchingTerm(searchFor: newEvent)
+        viewModel.eventData.bind { dataList in
+            self.eventList = dataList
+            print("searchBarSearchButtonClicked eventList: \(self.eventList[0].title!)")
+            self.conTableView.reloadData()
+        }
+        
+//        self.setData(searching: "?q=\(newEvent)&")
         self.conTableView.reloadData()
     }
     
@@ -84,7 +95,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // The Ten Band
     func setData(searching: String = "") {
         let url = "https://api.seatgeek.com/2/events" + searching + "client_id=" + clientId
-        print("url: \(url)")
         let apiURL: URL! = URL(string: url)
         let apidata = try! Data(contentsOf: apiURL)
 

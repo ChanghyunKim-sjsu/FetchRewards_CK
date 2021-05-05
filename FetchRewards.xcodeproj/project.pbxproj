@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C62F382D263EED250010EB9F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62F382C263EED250010EB9F /* Box.swift */; };
 		C684EE8426310C7300E5CFF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684EE8326310C7300E5CFF1 /* AppDelegate.swift */; };
 		C684EE8B26310C7300E5CFF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C684EE8926310C7300E5CFF1 /* Main.storyboard */; };
 		C684EE8E26310C7300E5CFF1 /* FetchRewards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C684EE8C26310C7300E5CFF1 /* FetchRewards.xcdatamodeld */; };
@@ -26,6 +27,9 @@
 		C6C508892635AE9D00A3F7A9 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C508882635AE9D00A3F7A9 /* backArrow.png */; };
 		C6C5089E263BE78000A3F7A9 /* EventVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C5089D263BE78000A3F7A9 /* EventVO.swift */; };
 		C6C50901263CF14B00A3F7A9 /* icon_like_tap_30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C50900263CF14B00A3F7A9 /* icon_like_tap_30@2x.png */; };
+		C6FB2BC9263EEF2600C61130 /* SeatGeekData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB2BC8263EEF2600C61130 /* SeatGeekData.swift */; };
+		C6FB2BCC26401AE000C61130 /* SeatGeekService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB2BCB26401AE000C61130 /* SeatGeekService.swift */; };
+		C6FB2BCF2640257C00C61130 /* SeatGeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB2BCE2640257C00C61130 /* SeatGeekViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C62F382C263EED250010EB9F /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		C684EE8026310C7300E5CFF1 /* FetchRewards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchRewards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C684EE8326310C7300E5CFF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C684EE8A26310C7300E5CFF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +76,9 @@
 		C6C508882635AE9D00A3F7A9 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		C6C5089D263BE78000A3F7A9 /* EventVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVO.swift; sourceTree = "<group>"; };
 		C6C50900263CF14B00A3F7A9 /* icon_like_tap_30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_like_tap_30@2x.png"; sourceTree = "<group>"; };
+		C6FB2BC8263EEF2600C61130 /* SeatGeekData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatGeekData.swift; sourceTree = "<group>"; };
+		C6FB2BCB26401AE000C61130 /* SeatGeekService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatGeekService.swift; sourceTree = "<group>"; };
+		C6FB2BCE2640257C00C61130 /* SeatGeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatGeekViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C62F382A263EECFC0010EB9F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6FB2BC8263EEF2600C61130 /* SeatGeekData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C62F382B263EED140010EB9F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C62F382C263EED250010EB9F /* Box.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		C684EE7726310C7300E5CFF1 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +145,10 @@
 		C684EE8226310C7300E5CFF1 /* FetchRewards */ = {
 			isa = PBXGroup;
 			children = (
+				C6FB2BCD26401C9800C61130 /* ViewModel */,
+				C6FB2BCA263EF00700C61130 /* Services */,
+				C62F382B263EED140010EB9F /* Utilities */,
+				C62F382A263EECFC0010EB9F /* Models */,
 				C684EE8C26310C7300E5CFF1 /* FetchRewards.xcdatamodeld */,
 				C684EE8326310C7300E5CFF1 /* AppDelegate.swift */,
 				C684EEDA2631D5CA00E5CFF1 /* ColorWithHexString.swift */,
@@ -167,6 +195,22 @@
 				C6C50900263CF14B00A3F7A9 /* icon_like_tap_30@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		C6FB2BCA263EF00700C61130 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C6FB2BCB26401AE000C61130 /* SeatGeekService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C6FB2BCD26401C9800C61130 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6FB2BCE2640257C00C61130 /* SeatGeekViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,7 +348,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6FB2BCF2640257C00C61130 /* SeatGeekViewModel.swift in Sources */,
 				C6C5086726322CB400A3F7A9 /* Constant.swift in Sources */,
+				C6FB2BC9263EEF2600C61130 /* SeatGeekData.swift in Sources */,
 				C684EEF62631F8BC00E5CFF1 /* EventTableViewCell.swift in Sources */,
 				C6C5086C26322D5400A3F7A9 /* Connect.swift in Sources */,
 				C6C5087D2635A58F00A3F7A9 /* EventDetailViewController.swift in Sources */,
@@ -313,6 +359,8 @@
 				C684EEDB2631D5CA00E5CFF1 /* ColorWithHexString.swift in Sources */,
 				C684EEE32631D68F00E5CFF1 /* MainViewController.swift in Sources */,
 				C6C5089E263BE78000A3F7A9 /* EventVO.swift in Sources */,
+				C6FB2BCC26401AE000C61130 /* SeatGeekService.swift in Sources */,
+				C62F382D263EED250010EB9F /* Box.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

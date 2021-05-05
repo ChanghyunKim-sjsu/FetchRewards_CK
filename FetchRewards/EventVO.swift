@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class EventVO {
-    var thumbnail: String? // Event thumbNail image
+    var thumbnail: String? // Event thumbNail image url
     var title: String? // Event Title
     var location: String? // Event location
     var date: String? // Event date
 
-    // 영호 썸네일 이미지를 담을 UIImage 객체를 추가한다.
+    // Actual thumbnail image
     var thumbnailImage: UIImage?
 }
